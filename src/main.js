@@ -10,18 +10,55 @@ async function loadPokemons() {
     return data.results.map(p => new Pokemon(p));
 }
 
-function renderIndex(pokemons) {
-    const container = document.getElementById("pokemon-list");
+// --- Código del navegador ---
+if (typeof window !== "undefined") {
 
-    pokemons.forEach(pokemon => {
-        const item = document.createElement("div");
-        item.innerHTML = `
-            <h2>${pokemon.id} ${pokemon.name}</h2>
-            <img src="${pokemon.image}" alt="${pokemon.name}">
-        `;
-        container.appendChild(item);
-    });
+    function renderIndex(pokemons) {
+        const container = document.getElementById("pokemon-list");
+
+        pokemons.forEach(pokemon => {
+            const item = document.createElement("div");
+            item.innerHTML = `
+                <h2><a href="pokemons/${pokemon.id}.html">${pokemon.id} ${pokemon.name}</a></h2>
+                <img src="${pokemon.image}" alt="${pokemon.name}">
+            `;
+            container.appendChild(item);
+        });
+    }
+
+    console.log("Pokédex iniciada");
+    loadPokemons().then(renderIndex);
 }
 
-console.log("Pokédex iniciada");
-loadPokemons().then(renderIndex);
+// --- Generación de páginas individuales (solo Node) ---
+if (typeof window === "undefined") {
+    const fs = await import("fs");
+    const path = await import("path");
+
+    function generatePokemonPage(pokemon) {
+        const html = `
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>${pokemon.name}</title>
+        </head>
+        <body>
+            <h1>${pokemon.name}</h1>
+            <img src="${pokemon.image}" alt="${pokemon.name}">
+            <p>ID: ${pokemon.id}</p>
+
+            <a href="../index.html">Volver a la Pokédex</a>
+        </body>
+        </html>
+        `;
+
+        const filePath = path.join("pokemons", `${pokemon.id}.html`);
+        fs.writeFileSync(filePath, html);
+    }
+
+    loadPokemons().then(pokemons => {
+        pokemons.forEach(p => generatePokemonPage(p));
+        console.log("Páginas generadas");
+    });
+}
