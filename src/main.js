@@ -1,3 +1,5 @@
+import { Pokemon } from "./Pokemon.js";
+
 const API_URL = "https://pokeapi.co/api/v2/pokemon?limit=50"
 
 async function loadPokemons() {
