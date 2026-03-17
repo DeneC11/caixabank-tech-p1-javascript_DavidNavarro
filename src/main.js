@@ -19,7 +19,7 @@ if (typeof window !== "undefined") {
         pokemons.forEach(pokemon => {
             const item = document.createElement("div");
             item.innerHTML = `
-                <h2><a href="pokemons/${pokemon.id}.html">${pokemon.id} ${pokemon.name}</a></h2>
+                <h2><a href="pokemons/${pokemon.id}.html">${pokemon.name}</a></h2>
                 <img src="${pokemon.image}" alt="${pokemon.name}">
             `;
             container.appendChild(item);
@@ -42,13 +42,16 @@ if (typeof window === "undefined") {
         <head>
             <meta charset="UTF-8">
             <title>${pokemon.name}</title>
+            <link rel="stylesheet" href="../style.css">
         </head>
         <body>
+        <body class="pokemon-page">
             <h1>${pokemon.name}</h1>
             <img src="${pokemon.image}" alt="${pokemon.name}">
             <p>ID: ${pokemon.id}</p>
-
+        
             <a href="../index.html">Volver a la Pokédex</a>
+        </body>
         </body>
         </html>
         `;

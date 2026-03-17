@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-transform: capitalize;
+}
+
+#pokemon-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+#pokemon-list div {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+img {
+    width: 120px;
+}
+
+/* --- Estilos para páginas individuales --- */
+
+.pokemon-page {
+    max-width: 500px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.pokemon-page h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+.pokemon-page img {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.pokemon-page p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.pokemon-page a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: #ffcb05;
+    color: #2a75bb;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.pokemon-page a:hover {
+    background: #f5b800;
+}
